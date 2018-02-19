@@ -29,7 +29,11 @@ SECRET_KEY = 'bcsbw0kv$b$(3aoti_@!7za#5bd0fl49bor&u*9a#esu8ou8c3'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['godspeed-dev6.us-west-2.elasticbeanstalk.com']
+ALLOWED_HOSTS = [
+    'godspeed-dev6.us-west-2.elasticbeanstalk.com',
+    'localhost',
+    '52.32.116.99'
+]
 
 
 # Application definition
