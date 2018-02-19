@@ -106,9 +106,21 @@ WSGI_APPLICATION = 'godspeed.wsgi.application'
 #         'PORT': '5432'
 #     }
 # }
-# DATABASES = {
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': os.environ['RDS_DB_NAME'],
+        'USER': os.environ['RDS_USERNAME'],
+        'PASSWORD': os.environ['RDS_PASSWORD'],
+        'HOST': os.environ['RDS_HOSTNAME'],
+        'PORT': os.environ['RDS_PORT'],
+    }
+}
+
+# if 'RDS_HOSTNAME' in os.environ:
+#     DATABASES = {
 #         'default': {
-#             'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#             'ENGINE': 'django.db.backends.postgresql',
 #             'NAME': os.environ['RDS_DB_NAME'],
 #             'USER': os.environ['RDS_USERNAME'],
 #             'PASSWORD': os.environ['RDS_PASSWORD'],
@@ -116,29 +128,17 @@ WSGI_APPLICATION = 'godspeed.wsgi.application'
 #             'PORT': os.environ['RDS_PORT'],
 #         }
 #     }
-
-if 'RDS_HOSTNAME' in os.environ:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql',
-            'NAME': os.environ['RDS_DB_NAME'],
-            'USER': os.environ['RDS_USERNAME'],
-            'PASSWORD': os.environ['RDS_PASSWORD'],
-            'HOST': os.environ['RDS_HOSTNAME'],
-            'PORT': os.environ['RDS_PORT'],
-        }
-    }
-else:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql',
-            'NAME': 'godspeed',
-            'USER': 'limintu',
-            'PASSOWRD': ' ',
-            'HOST': '127.0.0.1',
-            'PORT': '5432'
-        }
-    }
+# else:
+#     DATABASES = {
+#         'default': {
+#             'ENGINE': 'django.db.backends.postgresql',
+#             'NAME': 'godspeed',
+#             'USER': 'limintu',
+#             'PASSOWRD': ' ',
+#             'HOST': '127.0.0.1',
+#             'PORT': '5432'
+#         }
+#     }
 
 
 # Password validation
