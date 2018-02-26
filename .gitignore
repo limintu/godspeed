@@ -111,7 +111,7 @@ venv.bak/
 !.elasticbeanstalk/*.global.yml
 
 
-fontawesome/
-vendor/
-
+#fontawesome/
+#vendor/
+temp/
 
