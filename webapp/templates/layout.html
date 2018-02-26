@@ -8,7 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Scrolling Nav - Start Bootstrap Template</title>
+    <title>GodSpeed Internationl Inc</title>
 
     {% load static %}
     <!-- Bootstrap core CSS -->
@@ -24,21 +24,42 @@
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
       <div class="container">
-        <a class="navbar-brand js-scroll-trigger" href="{% url 'index' %}">GodSpeed</a>
+        <a class="navbar-brand" href="{% url 'index' %}">GodSpeed</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
-          <ul class="navbar-nav ml-auto">
+          <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="#about">About</a>
+              <a class="nav-link" href="#about">About</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="#services">Services</a>
+              <a class="nav-link" href="#services">Services</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="#contact">Contact</a>
+              <a class="nav-link" href="#contact">Contact</a>
             </li>
+          </ul>
+
+          <ul class="navbar-nav">
+            {% if user.is_authenticated %}
+            <span class="navbar-text text-white">Hi, </span>
+            <li class="nav-item dropdown active">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                {{ user.get_short_name }}
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="/accounts/dashboard/">Dashboard</a>
+                <a class="dropdown-item" href="/accounts/password_change/">Change password</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="/accounts/logout/">Log out</a>
+              </div>              
+            </li>
+            {% else %}
+            <li class="nav-item">  
+              <a class="nav-link" href="/accounts/login"><u>Login</u></a>
+            </li>
+            {% endif %}
           </ul>
         </div>
       </div>
@@ -50,11 +71,10 @@
         <p class="lead">A landing page template freshly redesigned for Bootstrap 4</p>
       </div>
     </header> -->
-    <div>
+
     {% block content %}
 
     {% endblock %}
-    </div>
     <!-- Footer -->
     <footer class="py-3 bg-dark">
       <div class="container">
@@ -74,5 +94,4 @@
     <script src="{% static "js/scrolling-nav.js" %}></script>
 
   </body>
-
 </html>

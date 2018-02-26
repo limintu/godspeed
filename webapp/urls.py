@@ -21,4 +21,16 @@ urlpatterns = [
     path('', views.index, name='index'),
     path('contact/', views.contact, name='contact'),
     path('receive/', views.receive_message),
+    path('signup/', views.signup, name="signup"),
+    path('accounts/', views.dashboard, name='dashboard'),
+    path('accounts/dashboard/', views.dashboard, name='dashboard'),
+    path('accounts/login/', views.auth_login, name='login'),
+    path('accounts/logout/', views.auth_logout, name='logout'),
+    path('accounts/password_change/', views.password_change, name='password_change'),
+    path('accounts/password_change/done', views.password_change_done, name='password_change_done'),
+
+    # path('nav-footer', views.nav_footer),
+    # path('accounts/logout/', views.auth_logout, name='logout'),
+    # path('accounts/password_change/', views.auth_password_change, name='password_change'),
+    # path('accounts/password_change/done/', views.auth_password_change_done, name='password_change_done'),
 ]

@@ -1,0 +1,95 @@
+{% extends 'sticky-footer-navbar.html' %}
+{% block content %}
+<header class="bg-info text-white">
+  <div class="container text-left">
+    <h1>Sign Up</h1>
+  </div>
+</header>
+
+<main role="main" class="container">
+	<form action="/signup/" method="POST" class="needs-validation" novalidate>
+			{% csrf_token %}
+		  <div class="form-row">
+		  	<!-- <div class="col-sm-8">  -->
+		    <div class="form-group col-6 col-sm-3">
+		    	<label for="email">Email</label>
+		    	<input type="text" class="form-control" name="email" placeholder="abc@xyz.com" required>
+	        <div class="invalid-feedback">
+	          {{ "Please enter correct format" }}
+	        </div>
+	      </div>
+		  </div>
+		  <div class="form-row">
+		    <div class="form-group col-6 col-sm-3">
+		    	<label for="password">Password</label>
+		      <input type="password" class="form-control" name="password" required>
+	        <div>
+	          {{ password_not_match }}
+	        </div>
+		    </div>
+		    <div class="form-group col-6 col-sm-3">
+		    	<label for="password_confirm">Enter Password Again</label>
+		      <input type="password" class="form-control" name="password_confirm" required>
+	        <div class="invalid-feedback">
+	        </div>
+		    </div>
+		    <!-- </div> -->
+		  </div>
+	  	 <div class="form-row">
+  	<!-- <div class="col-sm-8">  -->
+		    <div class="form-group col-6 col-sm-3">
+		    	<label for="first_name">First Name</label>
+		    	<input type="text" class="form-control" name="first_name" placeholder="First name" 
+		    	required autofocus>
+	        <div class="invalid-feedback">
+	          First name needed.
+	        </div>
+		    </div>
+		    <div class="form-group col-6 col-sm-3">
+		    	<label for="last_name">Last Name</label>
+		      <input type="text" class="form-control" name="last_name" placeholder="Last name" required>
+	        <div class="invalid-feedback">
+	          Last name needed.
+	        </div>
+		    </div>
+		  </div>
+		  <div class="form-row">
+		    <div class="form-group col-6 col-sm-3">
+		    	<label for="phone">Phone</label>
+		      <input type="text" class="form-control" name="phone">
+<!-- 	        <div class="invalid-feedback">
+	          Phone number needed.
+	        </div> -->
+		    </div>
+		  </div>
+
+		<!-- </div> -->
+		  <div class="form-row">
+		  	<button class="btn btn-primary mb-3" type="submit">Sign Up</button>
+		  </div>
+	</form>
+</main>
+
+<script>
+// Example starter JavaScript for disabling form submissions if there are invalid fields
+(function() {
+  'use strict';
+  window.addEventListener('load', function() {
+    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+    var forms = document.getElementsByClassName('needs-validation');
+    // Loop over them and prevent submission
+    var validation = Array.prototype.filter.call(forms, function(form) {
+      form.addEventListener('submit', function(event) {
+        if (form.checkValidity() === false) {
+          event.preventDefault();
+          event.stopPropagation();
+        }
+        form.classList.add('was-validated');
+      }, false);
+    });
+  }, false);
+})();
+</script>	
+
+
+{% endblock %}

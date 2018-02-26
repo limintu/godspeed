@@ -15,8 +15,18 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.contrib.auth import views as auth_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('webapp.urls')),
+
+    ### will include many URL pattern 
+    # path('accounts/', include('django.contrib.auth.urls')),
+
+    ### more control over URL pattern
+    # path('accounts/login/', auth_views.PasswordChangeView.as_view(template_name="registration/login.html")),
+    # path('accounts/logout/', auth_views.PasswordChangeView.as_view()),
+    # path('accounts/password_change/', auth_views.PasswordChangeView.as_view()),
+    # path('accounts/password_change/done/', auth_views.PasswordChangeView.as_view()),
 ]
