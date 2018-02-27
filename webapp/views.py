@@ -82,12 +82,15 @@ def auth_login(request):
 		
 		# GET the previous URL when not logging in
 		action_after_login = request.GET.get('next')
-		# print (action_after_login)
+		print (action_after_login)
 		
 		if user is not None:
 			login(request, user)
 			print ("!!!!! User Exists and Login !!!!!")
-			return redirect(action_after_login)
+			if action_after_login is None:
+				return render(request, 'accounts/dashboard.html')
+			else:
+				return redirect(action_after_login)
 		else:
 			print ("!!!!! Invalid User !!!!!")
 			context = {'username': username, 'invalid_password': "Invalid Password"}
@@ -100,10 +103,31 @@ def auth_login(request):
 @login_required(login_url='/accounts/login/')
 def password_change(request):
 	if request.method == 'POST':
-		rediect('/')
+		old_password = request.POST['old_password']
+		print("old_password: " + str(old_password))
+		new_password = request.POST['new_password']
+		print("new_password: " + str(new_password))
+		new_password_confirm = request.POST['new_password_confirm']
+		print("new_password_confirm: " + str(new_password_confirm))
+
+		context = {}
+
+		if request.user.check_password(old_password):
+			print ("old passwrod matched")
+			if new_password == new_password_confirm:
+				user = request.user
+				user.set_password(new_password)
+				user.save()
+				# logout(request)
+				return redirect('password_change_done')
+			else:
+				context['password_not_match'] = "password not match"
+		else:
+			context['original_password_invalid'] = "original password invalid"
+
+		return render(request, 'accounts/login.html', context)
 	else:
-		context = {'user': request.user}
-		return render(request, 'accounts/password_change.html', context)
+		return render(request, 'accounts/password_change.html')
 
 def password_change_done(request):
 	return render(request, 'accounts/password_change_done.html')
@@ -111,5 +135,7 @@ def password_change_done(request):
 def auth_logout(request):
     logout(request)
     return redirect('index')
-    # Redirect to a success page.
+    
+
+
 
